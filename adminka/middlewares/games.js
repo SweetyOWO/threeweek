@@ -50,14 +50,16 @@ const updateGamesFile = async (req, res, next) => {
     next();
 }
 
-const findGameById = (req, req , next) => {
-    const id = Number(req, params.id);
+const findGameById = (req, res, next) => {
+    const id = Number(req, req.params.id);
     req.game = req.games.find(item => item.id === id);
     next();
 }
 const deleteGame = (req, res, next) => {
     const id = req.game.id;
-    const index = req.games.findIndex(item => item.id === req.game.id);
+    const index = req.games.findIndex(item => item.id == id);
+    req.games.splice(index, 1);
+    next();
 }
 
 module.exports = {
